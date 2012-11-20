@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>Apiary Blueprint</string>
+    <key>scopeName</key>
+    <string>text.apib</string>
+    <key>fileTypes</key>
+    <array>
+    <string>apib</string>
+    </array>
+    <key>patterns</key>
+    <array>
+        <dict>
+            <key>match</key>
+            <string>^HOST:(.*)</string>
+            <key>name</key>
+            <string>keyword.host.apib</string>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.host.value.apib</string>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+    <key>uuid</key>
+    <string>66b295dc-333a-11e2-9c92-1093e9011416</string>
+</dict>
+</plist>
