@@ -1,0 +1,27 @@
+{
+    "name": "Apiary Blueprint",
+    "scopeName": "text.apib",
+    "fileTypes": ["apib"],
+    "patterns": [
+        {
+            "name": "keyword.host.apib",
+            "match": "^HOST:(.*)",
+            "captures": {
+                "1": { "name": "string.value.host.apib" }
+            }
+        },
+        {
+            "name": "meta.markup.heading.1.apib",
+            "match": "--- (.+)---",
+            "captures": {
+                "1": { "name": "entity.apiname.apib" }
+            }
+        },
+        {
+            "begin": "---",
+            "end": "---",
+            "name": "comment.block.apidescription.apib"
+        }
+    ],
+    "uuid": "66b295dc-333a-11e2-9c92-1093e9011416"
+}
