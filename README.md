@@ -14,3 +14,5 @@ References
 [Apiary.io](http://apiary.io/blueprint)
 
 [blueprint-parser](https://github.com/apiaryio/blueprint-parser)
+
+[Sublime Text syntax](http://docs.sublimetext.info/en/latest/reference/syntaxdefs.html)
