@@ -12,48 +12,63 @@
         },
         {
             "name": "meta.apiname.apib",
-            "match": "--- (.+)---",
+            "match": "^--- (.+)---",
             "captures": {
-                "1": { "name": "entity.apiname.apib" }
+                "1": { "name": "entity.name.module.apiname.apib" }
             }
         },
         {
-            "begin": "---",
-            "end": "---",
+            "begin": "^---",
+            "end": "^---",
             "name": "comment.apidescription.apib"
         },
         {
-            "name": "meta.section.apib",
-            "match": "-- (.+)--",
-            "captures": {
-                "1": { "name": "entity.section.apib" }
-            }
+            "begin": "(?=^--)",
+            "end": "(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL)",
+            "name": "meta.apidescription.apib",
+            "patterns": [
+                {
+                    "name": "entity.name.class.section.apib",
+                    "match": "^-- (.*)--"
+                },
+                {
+                    "name": "comment.apidescription.apib",
+                    "match": ".*"
+                }
+            ]
         },
         {
-            "begin": "--",
-            "end": "--",
-            "name": "comment.apidescription.apib"
-        },
-        {
-            "name": "keyword.resource.apib",
-            "match": "^(GET|POST|PUT|DELETE|OPTIONS|PATCH|PROPPATCH|LOCK|UNLOCK|COPY|MOVE|MKCOL)\\b(.*)",
-            "captures": {
+            "begin": "^(GET|POST|PUT|DELETE|OPTIONS|PATCH|PROPPATCH|LOCK|UNLOCK|COPY|MOVE|MKCOL)\\b(.*)",
+            "end": "(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL|^--)",
+            "beginCaptures": {
+                "1": { "name": "keyword.resource.apib" },
                 "2": { "name": "string.resource.apib" }
-            }
-        },
-        {
-            "name": "punctuation.inout.apib",
-            "match": "^[><](?:(?: (\\d+))|(?: ([a-zA-Z0-9\\-]+)(:)(.+)))?",
-            "captures": {
-                "1": { "name": "constant.numeric.integer.httpstatus.apib" },
-                "2": { "name": "variable.parameter.httpheader.name.apib" },
-                "3": { "name": "punctuation.separator.httpheader.apib" },
-                "4": { "name": "string.httpheader.value.apib" }
-            }
-        },
-        {
-            "name": "punctuation.responseseparator.apib",
-            "match": "\\+{5}"
+            },
+            "name": "meta.resourcedescription.apib",
+            "patterns": [
+                {
+                    "begin": "(?<=^$^$)",
+                    "end": "(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL|^--)",
+                    "name": "comment.resourcedescription.apib"
+                },
+                {
+                    "name": "storage.inout.apib",
+                    "match": "^[><](?:(?: (\\d+))|(?: ([a-zA-Z0-9\\-]+)(:)(.+)))?",
+                    "captures": {
+                        "1": { "name": "constant.numeric.integer.httpstatus.apib" },
+                        "2": { "name": "variable.parameter.httpheader.name.apib" },
+                        "3": { "name": "punctuation.separator.httpheader.apib" },
+                        "4": { "name": "string.httpheader.value.apib" }
+                    }
+                },
+                {
+                    "name": "punctuation.responseseparator.apib",
+                    "match": "\\+{5}"
+                },
+                {
+                    "include": "source.json"
+                }
+            ]
         }
     ],
     "uuid": "66b295dc-333a-11e2-9c92-1093e9011416"

@@ -30,92 +30,115 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.apiname.apib</string>
+					<string>entity.name.module.apiname.apib</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>--- (.+)---</string>
+			<string>^--- (.+)---</string>
 			<key>name</key>
 			<string>meta.apiname.apib</string>
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>---</string>
+			<string>^---</string>
 			<key>end</key>
-			<string>---</string>
+			<string>^---</string>
 			<key>name</key>
 			<string>comment.apidescription.apib</string>
 		</dict>
 		<dict>
-			<key>captures</key>
+			<key>begin</key>
+			<string>(?=^--)</string>
+			<key>end</key>
+			<string>(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL)</string>
+			<key>name</key>
+			<string>meta.apidescription.apib</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>^-- (.*)--</string>
+					<key>name</key>
+					<string>entity.name.class.section.apib</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>comment.apidescription.apib</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>^(GET|POST|PUT|DELETE|OPTIONS|PATCH|PROPPATCH|LOCK|UNLOCK|COPY|MOVE|MKCOL)\b(.*)</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.section.apib</string>
+					<string>keyword.resource.apib</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>-- (.+)--</string>
-			<key>name</key>
-			<string>meta.section.apib</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>--</string>
-			<key>end</key>
-			<string>--</string>
-			<key>name</key>
-			<string>comment.apidescription.apib</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>string.resource.apib</string>
 				</dict>
 			</dict>
-			<key>match</key>
-			<string>^(GET|POST|PUT|DELETE|OPTIONS|PATCH|PROPPATCH|LOCK|UNLOCK|COPY|MOVE|MKCOL)\b(.*)</string>
+			<key>end</key>
+			<string>(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL|^--)</string>
 			<key>name</key>
-			<string>keyword.resource.apib</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<string>meta.resourcedescription.apib</string>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>begin</key>
+					<string>(?&lt;=^$^$)</string>
+					<key>end</key>
+					<string>(?=^GET|^POST|^PUT|^DELETE|^OPTIONS|^PATCH|^PROPPATCH|^LOCK|^UNLOCK|^COPY|^MOVE|^MKCOL|^--)</string>
 					<key>name</key>
-					<string>constant.numeric.integer.httpstatus.apib</string>
+					<string>comment.resourcedescription.apib</string>
 				</dict>
-				<key>2</key>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>constant.numeric.integer.httpstatus.apib</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.httpheader.name.apib</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.httpheader.apib</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>string.httpheader.value.apib</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>^[&gt;&lt;](?:(?: (\d+))|(?: ([a-zA-Z0-9\-]+)(:)(.+)))?</string>
 					<key>name</key>
-					<string>variable.parameter.httpheader.name.apib</string>
+					<string>storage.inout.apib</string>
 				</dict>
-				<key>3</key>
 				<dict>
+					<key>match</key>
+					<string>\+{5}</string>
 					<key>name</key>
-					<string>punctuation.separator.httpheader.apib</string>
+					<string>punctuation.responseseparator.apib</string>
 				</dict>
-				<key>4</key>
 				<dict>
-					<key>name</key>
-					<string>string.httpheader.value.apib</string>
+					<key>include</key>
+					<string>source.json</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>^[&gt;&lt;](?:(?: (\d+))|(?: ([a-zA-Z0-9\-]+)(:)(.+)))?</string>
-			<key>name</key>
-			<string>punctuation.inout.apib</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\+{5}</string>
-			<key>name</key>
-			<string>punctuation.responseseparator.apib</string>
+			</array>
 		</dict>
 	</array>
 	<key>scopeName</key>
