@@ -7,11 +7,11 @@
             "name": "keyword.host.apib",
             "match": "^HOST:(.*)",
             "captures": {
-                "1": { "name": "string.value.host.apib" }
+                "1": { "name": "string.host.apib" }
             }
         },
         {
-            "name": "meta.markup.heading.1.apib",
+            "name": "meta.apiname.apib",
             "match": "--- (.+)---",
             "captures": {
                 "1": { "name": "entity.apiname.apib" }
@@ -20,7 +20,40 @@
         {
             "begin": "---",
             "end": "---",
-            "name": "comment.block.apidescription.apib"
+            "name": "comment.apidescription.apib"
+        },
+        {
+            "name": "meta.section.apib",
+            "match": "-- (.+)--",
+            "captures": {
+                "1": { "name": "entity.section.apib" }
+            }
+        },
+        {
+            "begin": "--",
+            "end": "--",
+            "name": "comment.apidescription.apib"
+        },
+        {
+            "name": "keyword.resource.apib",
+            "match": "^(GET|POST|PUT|DELETE|OPTIONS|PATCH|PROPPATCH|LOCK|UNLOCK|COPY|MOVE|MKCOL)\\b(.*)",
+            "captures": {
+                "2": { "name": "string.resource.apib" }
+            }
+        },
+        {
+            "name": "punctuation.inout.apib",
+            "match": "^[><](?:(?: (\\d+))|(?: ([a-zA-Z0-9\\-]+)(:)(.+)))?",
+            "captures": {
+                "1": { "name": "constant.numeric.integer.httpstatus.apib" },
+                "2": { "name": "variable.parameter.httpheader.name.apib" },
+                "3": { "name": "punctuation.separator.httpheader.apib" },
+                "4": { "name": "string.httpheader.value.apib" }
+            }
+        },
+        {
+            "name": "punctuation.responseseparator.apib",
+            "match": "\\+{5}"
         }
     ],
     "uuid": "66b295dc-333a-11e2-9c92-1093e9011416"
