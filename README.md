@@ -1,6 +1,9 @@
 Apiary.io Blueprint Syntax Highlighting
 =======================================
 
+Blueprint is a documentation format for REST APIs.
+
+
 Installation
 ------------
 
